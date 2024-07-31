@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Counter from "./counter.js";
+import Counter from "./counter.model.js";
 
 // User Schema and Model
 const userSchema = new mongoose.Schema(
