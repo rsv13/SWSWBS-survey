@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema(
     gender: {
       type: String,
       required: true,
-      enum: ["male", "female", "Prefer not to say", "other"], // Optional: enum to limit gender values
+      enum: ["male", "female"],
     },
     ageGroup: {
       type: String,
