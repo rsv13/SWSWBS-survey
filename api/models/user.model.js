@@ -4,15 +4,22 @@ import Counter from "./counter.model.js";
 // User Schema and Model
 const userSchema = new mongoose.Schema(
   {
-    name: {
+    username: {
       type: String,
       required: true,
+      unique: true,
+    },
+    gender: {
+      type: String,
+      required: true,
+      enum: ["male", "female", "Prefer not to say", "other"], // Optional: enum to limit gender values
     },
     ageGroup: {
       type: String,
       required: true,
       enum: ["16 to 24", "25 to 34", "35 to 44", "45 to 54", "54 and above"],
     },
+
     email: {
       type: String,
       required: true,
@@ -24,17 +31,6 @@ const userSchema = new mongoose.Schema(
     },
     profilePicture: {
       type: String,
-      required: true,
-    },
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    gender: {
-      type: String,
-      required: true,
-      enum: ["male", "female", "Prefer not to say", "other"], // Optional: enum to limit gender values
     },
   },
   { timestamps: true }
