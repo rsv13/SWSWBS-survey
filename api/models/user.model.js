@@ -6,13 +6,13 @@ const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      required: true,
+      default: "",
       unique: true,
     },
     gender: {
       type: String,
       required: true,
-      enum: ["male", "female"],
+      enum: ["male", "female", "Prefer not to say"],
     },
     ageGroup: {
       type: String,

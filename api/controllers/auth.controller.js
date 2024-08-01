@@ -3,15 +3,15 @@ import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 
 export const signup = async (req, res, next) => {
-  const { username, email, password, ageGroup, gender } = req.body;
+  const { email, password, ageGroup, gender } = req.body;
 
   if (
-    !username ||
+    // !username ||
     !email ||
     !password ||
     !ageGroup ||
     !gender ||
-    username === "" ||
+    // username === "" ||
     email === "" ||
     password === "" ||
     ageGroup === "" ||
@@ -23,7 +23,7 @@ export const signup = async (req, res, next) => {
   const hashPassword = bcryptjs.hashSync(password, 10);
 
   const newUser = new User({
-    username,
+    // username,
     email,
     password: hashPassword,
     ageGroup,
