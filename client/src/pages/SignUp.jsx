@@ -60,7 +60,7 @@ export default function SignUp() {
       {/* left side */}
       <div className='flex-1'>
       <Link to='/' className='sm:text-xl font-bold dark:text-white text-4xl'>
-            <span className='px-2 py-1 bg-red-600 rounded-lg text-white'>USW</span>Survey
+            <span className='px-2 py-1 rounded-lg text-white' style={{backgroundColor : 'rgba(202, 5, 57, 255)'}}>USW</span>Survey
         </Link>
         <p className='text-sm mt-5'>
           This is South Wales Social Well-Being Survey. It helps to assess the social well-being of an individual and provide a score based on the responses. To take the survey, please sign up.
@@ -126,7 +126,7 @@ export default function SignUp() {
               placeholder='Enter your password' id='password' onChange={handleChange}
               />
           </div>
-          <Button gradientDuoTone='purpleToPink' type='submit' disabled={loading}> 
+          <Button style={{backgroundColor : 'rgba(202, 5, 57, 255)'}} type='submit' disabled={loading} outline> 
           { loading ? (
             <>
             <Spinner size='sm' />

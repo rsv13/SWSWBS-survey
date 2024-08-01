@@ -11,7 +11,7 @@ export default function Header() {
   return (
       <Navbar className='border-b-2'>
         <Link to='/' className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
-            <span className='px-2 py-1 bg-gradient-to-r from-red-500 to via-orange-500 to-yellow-400 rounded-lg text-white'>USW</span>Survey
+            <span className='px-2 py-1  rounded-lg text-white' style={{backgroundColor : 'rgba(202, 5, 57, 255)'}}>USW</span>Survey
         </Link>
         <form>
             <TextInput type='text' placeholder='Search...' rightIcon={AiOutlineSearch} className='hidden lg:inline'/>
