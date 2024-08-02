@@ -1,7 +1,9 @@
 import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 import React, { useState } from 'react';
 import { HiMail } from 'react-icons/hi';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { signInFailure, signInStart, signInSuccess } from '../redux/user/userSlice';
 
 export default function SignIn() {
 
@@ -12,46 +14,45 @@ export default function SignIn() {
     password: ''
   });
 
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const { loading, error : errorMessage} = useSelector(state => state.user);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
 
 
   const handleChange = (e) => {
     setFormData({...formData, [e.target.id] : e.target.value.trim() });
   }
-
-  const handleRadioChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
   
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      return setErrorMessage('All fields are required');
+      return dispatch(signInFailure('Please fill all the fields'));
     }
     try {
-      setLoading(true);
-      setErrorMessage(null);
+      dispatch(signInStart());
       const res = await fetch('/api/auth/signin', {
         method: "POST",
-        headers: { 'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      const data = res.json();
-      if (data.success === false) {
-        return setErrorMessage(data.message);
-      }
-      setLoading(false);
-      if (res.ok) {
+  
+      const data = await res.json(); 
+  
+      if (!res.ok) {
+        dispatch(signInFailure(data.message || 'An error occurred'));
+      } else if (data.success === false) {
+        dispatch(signInFailure(data.message));
+      } else {
+        dispatch(signInSuccess(data));
         navigate('/');
       }
     } catch (error) {
-        setErrorMessage(error.message);
-      } 
+      dispatch(signInFailure(error.message));
     }
+  };
+  
  
 
 
