@@ -33,6 +33,8 @@ export default function SignUp() {
       return setErrorMessage('All fields are required');
     }
     try {
+      setLoading(true);
+      setErrorMessage(null);
       const res = await fetch('/api/auth/signup', {
         method: "POST",
         headers: { 'Content-Type': 'application/json'},
